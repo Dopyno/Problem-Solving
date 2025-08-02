@@ -1,35 +1,20 @@
-#include <stdio.h>
+/*To achieve Marks (Between 50-59) (User Input and Study Goal Check)
+    Complete all previous steps, then:
+    • Retrieve study hours for Maths, Programming, and Networking from the user.
+    • Add a weekly study goal and compare it with the total study hours.
+    • Print whether the user has met the goal or needs to study more.*/
+    #include <stdio.h>
 
-int main()
-{
-    char daysOfTheWeek[7] = {'S', 'M', 'T', 'W', 'T', 'F', 'S'};
-    int num;
-    printf("On which day you want you week to start? \n");
-    scanf("%d", &num);
+    int main(){
 
-    printf("***   July   ***\n");
-    for (int i = 0; i < 7; i++)
-    {
-        printf("%c  ", daysOfTheWeek[i]);
+        //* Create variable for three subjects and asign values directly within the code
+        int mathsHours = 6, programmingHours = 10, networkingHours = 4, totalHours;
+
+        //* Calculate the total hours
+        totalHours = mathsHours + programmingHours + networkingHours;
+
+        //* Print the total into the terminal
+        printf("\nYou will need a total weekly study hours of %d, to pass all modules.\n\n", totalHours);
+
+        return 0;
     }
-    printf("\n");
-    for (int i = 0; i < num; i++)
-    {
-        printf("  ");
-    }
-
-    for (int i = 1; i <= 30; i++)
-    {
-        printf("%2d", i);
-        if (i % 7 == 0)
-        {
-            printf("\n");
-        }
-        else
-        {
-            printf(" ");
-        }
-    }
-
-    return 0;
-}
