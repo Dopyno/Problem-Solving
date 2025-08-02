@@ -55,6 +55,5 @@ int main()
             printf("Keep going! You need to study more to meet your goal.\n");
         }
     }
-
     return 0;
 }
