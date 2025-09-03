@@ -6,7 +6,7 @@
 #include <stdio.h>
 
 int main(){
-    //* Create variable for three subjects
+    //* Create variable for three subjects and another one for total
     int mathsHours, programmingHours, networkingHours, totalHours;
 
     //* asign values within the code
