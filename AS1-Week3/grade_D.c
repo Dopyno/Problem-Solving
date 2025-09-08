@@ -19,9 +19,9 @@ int main(){
 
     //* Print the total into the terminal
     printf("\nYou will need a total weekly study hours of %d to pass all modules, as following: \n", totalHours);
-    printf("%-12s %2d\n", "Maths:", mathsHours);
-    printf("%-12s %2d\n", "Programming:", programmingHours);
-    printf("%-12s %2d\n", "Networking:", networkingHours);
+    printf("%s %d\n", "Maths:", mathsHours);
+    printf("%s %d\n", "Programming:", programmingHours);
+    printf("%s %d\n", "Networking:", networkingHours);
 
     return 0;
 }

@@ -28,9 +28,9 @@ int main()
 
     // Print the goal and total into the terminal
     printf("\nYor goal for this week was %d \nYou achieve a total of %d hours, as following: \n", goal, totalHours);
-    printf("%-12s %2d\n", "Maths:", mathsHours);
-    printf("%-12s %2d\n", "Programming:", programmingHours);
-    printf("%-12s %2d\n", "Networking:", networkingHours);
+    printf("%s %d\n", "Maths:", mathsHours);
+    printf("%s %d\n", "Programming:", programmingHours);
+    printf("%s %d\n", "Networking:", networkingHours);
 
     // Print whether the user has met the goal or needs to study more.
     if (goal <= totalHours)
