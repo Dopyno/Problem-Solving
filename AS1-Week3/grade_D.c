@@ -5,23 +5,21 @@
 
 #include <stdio.h>
 
-int main(){
-    //* Create variable for three subjects and another one for total
-    int mathsHours, programmingHours, networkingHours, totalHours;
+int main()
+{
+    //* Create variable for three subjects
+    int mathsHours, programmingHours, networkingHours;
 
     //* asign values within the code
     mathsHours = 15;
     programmingHours = 20;
     networkingHours = 10;
 
-    //* Calculate the total hours
-    totalHours = mathsHours + programmingHours + networkingHours;
-
     //* Print the total into the terminal
-    printf("\nYou will need a total weekly study hours of %d to pass all modules, as following: \n", totalHours);
-    printf("%s %d\n", "Maths:", mathsHours);
-    printf("%s %d\n", "Programming:", programmingHours);
-    printf("%s %d\n", "Networking:", networkingHours);
+    printf("\nYou will need a total weekly study hours of %d to pass all modules, as following: \n", mathsHours + programmingHours + networkingHours);
+    printf("Maths:       %d\n", mathsHours);
+    printf("Programming: %d\n", programmingHours);
+    printf("Networking:  %d\n", networkingHours);
 
     return 0;
 }

@@ -12,7 +12,7 @@ int main()
     int mathsHours, programmingHours, networkingHours, totalHours, goal;
 
     // Add a weekly study goal and compare it with the total study hours.
-    printf("\n\nPlease set a goal for learning this week: ");
+    printf("\n\nPlease set a learning goal for this week: ");
     scanf("%d", &goal);
 
     // Retrieve study hours for Maths, Programming, and Networking from the user.
@@ -27,10 +27,10 @@ int main()
     totalHours = mathsHours + programmingHours + networkingHours;
 
     // Print the goal and total into the terminal
-    printf("\nYor goal for this week was %d \nYou achieve a total of %d hours, as following: \n", goal, totalHours);
-    printf("%s %d\n", "Maths:", mathsHours);
-    printf("%s %d\n", "Programming:", programmingHours);
-    printf("%s %d\n", "Networking:", networkingHours);
+    printf("\nYor goal for this week is %d hours of study.\nYou achieve a total of %d hours of study, as following: \n", goal, totalHours);
+    printf("Maths:       %d\n", mathsHours);
+    printf("Programming: %d\n", programmingHours);
+    printf("Networking:  %d\n", networkingHours);
 
     // Print whether the user has met the goal or needs to study more.
     if (goal <= totalHours)
