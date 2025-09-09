@@ -11,7 +11,7 @@ int main()
     // Create variable
     int mathsHours, programmingHours, networkingHours, totalHours, goal;
 
-    // Add a weekly study goal and compare it with the total study hours.
+    // Ask user to set the weekly goal
     printf("\n\nPlease set a learning goal for this week: ");
     scanf("%d", &goal);
 
@@ -32,6 +32,7 @@ int main()
     printf("Programming: %d\n", programmingHours);
     printf("Networking:  %d\n", networkingHours);
 
+    // Compare the goal with the total hours
     // Print whether the user has met the goal or needs to study more.
     if (goal <= totalHours)
     {
