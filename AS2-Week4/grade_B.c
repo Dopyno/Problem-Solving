@@ -10,14 +10,14 @@ int main()
     // Create variable for ticketPrice
     char standard = 'S';
     char fastPass = 'F';
-    char userChoice, type;          // create variable to store the user selection
-    int numberOfTickets = 0, price; // to store the number of tickets and the price
-    float total = 0.0;
+    char userChoice, type, mealChoice; // create variable to store the user selection
+    int numberOfTickets = 0, price;    // to store the number of tickets and the price
+    float total = 0.0, mealPackage = 6.50, mealPackageTotal = 0.0, discount = 0.0;
 
     // Display the tickets, passes, meal package and discount for more then 5 tickets
     printf("\n========   Ticket and passes  s=========\n");
     printf("Thrill: £20 for Standard, £30 for Fast Pass.\n");
-    printf("Water: £18 for Standard, £28 for Fast Pass.\n");
+    printf("Water:  £18 for Standard, £28 for Fast Pass.\n");
     printf("Family: £15 for Standard, £25 for Fast Pass.\n");
     printf("Meal package just £6.50 per ticket!\n");
     printf("15%% discount for more the 5 tickets!\n"); // add double % as an escape sequence for %
@@ -25,10 +25,12 @@ int main()
     // Ask the user to select the the ticket and the type
     printf("\nPlease select you ticket “T” for Thrill,“W” for Water or “F” for Family: ");
     scanf(" %c", &userChoice);
-    printf("\nPlease select you ticket type “S” for Standard or “F” for Fast Pass: ");
+    printf("Please select you ticket type “S” for Standard or “F” for Fast Pass: ");
     scanf(" %c", &type);
-    printf("\nPlease select the number of tickets: : ");
+    printf("Please select the number of tickets: : ");
     scanf("%d", &numberOfTickets);
+    printf("Do you want a meal package? Please type (Y / N) ");
+    scanf(" %c", &mealChoice);
 
     // Use swich to select the user choice
     printf("\n========   Receipt  ========\n"); // just to print at the end in an receipt format
@@ -79,9 +81,30 @@ int main()
             total = price * numberOfTickets;
         }
         break;
-    } // print the number of tickets and the total cost
+    }
+    if (toupper(mealChoice) == 'Y') // verify if the user want meal or not
+    {
+        printf("Meal Package: Yes\n");
+        mealPackageTotal = mealPackage * numberOfTickets; // if yes calculate the meal package total
+    }
+    else
+    {
+        printf("Meal Package: No\n");
+    }
+    // print the number of tickets and the total cost
     printf("Number of tickets: %d\n", numberOfTickets);
-    printf("Total cost: £%.2f\n", total);
-    printf("===========================");
+    printf("Total cost before discount: £%.2f\n", total);
+    if (numberOfTickets >= 5)
+    {
+        discount = total * 0.15; // Calculate the 15% means: discount = total * 15 / 100
+        printf("Bulk Discount: £%.2f\n", discount);
+    }
+    else
+    {
+        printf("Bulk Discount: £0\n");
+    }
+    printf("Meal Package Cost: £%.2f\n", mealPackageTotal);
+    printf("Final Total Cost: £%.2f\n", total - discount + mealPackageTotal);
+    printf("===========================\n");
     return 0;
 }
