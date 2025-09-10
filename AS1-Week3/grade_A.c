@@ -6,3 +6,4 @@
 // • Print a detailed breakdown of study hours for each week.
 // • Compare total study hours between weeks and identify increases, decreases,
 // or no changes in each subject.
+
