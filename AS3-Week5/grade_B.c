@@ -5,26 +5,55 @@
 //  3. Use conditional logic to perform the selected tracking operation.
 //  4. Allow the user to return to the menu or exit.
 // 5. Display a summary of all entries when the user quits, including total calories burned.#include <stdio.h>
+#include<stdio.h>
 
 int main()
 {
-    int steps = 0, days = 0;
+    int steps = 0, userChoice;
     char userAnswer;
-    float calories = 0, unitConversion = 0.05, totalCalories = 0.0; // declare the variable
+    float calories = 0, unitConversion = 0.05, totalCalories = 0.0, caloriesBurned = 0.0, distanceInKm = 0.0; // declare the variable
 
     do
     {
-        printf("\nPlease enter the number of steps: "); // use Do/While ensure will run at least once
-        scanf("%d", &steps);
-        calories = steps * unitConversion;
-        totalCalories += calories;
-        days++;
-        printf("Calories burned:  %.2f calories.\n", calories);
-        printf("Do you want to enter steps for another day? (Y / N): ");
+        printf("Which of these would you like to add to the record?\n");
+        printf("1. Steps\n");
+        printf("2. Calories\n");
+        printf("3. Distance\n");
+        printf("Enter your choice: ");
+        scanf("%d", &userChoice);
+
+        switch (userChoice)
+        {
+        case 1:
+            printf("\nPlease enter the number of steps: "); // use Do/While ensure will run at least once
+            scanf("%d", &steps);
+            calories = steps * unitConversion;
+            totalCalories += calories;
+            printf("Calories burned:  %.2f calories.\n", calories);
+            break;
+        case 2:
+            printf("Enter the number of calories burned: ");
+            scanf("%f", &caloriesBurned);
+            totalCalories += caloriesBurned;
+            printf("%.2f calories were added to overall record.\n", caloriesBurned);
+            break;
+        case 3:
+            printf("Enter the distance walked in km: ");
+            scanf("%f", &distanceInKm);
+            float cal = (distanceInKm / 0.0008) * unitConversion;
+            totalCalories += cal;
+            printf("Whilst walking %.2fkm, you have likely burned %.2f calories.\n", distanceInKm, cal);
+            break;
+        default:
+            printf("Invalid option!\n");
+            break;
+        }
+
+        printf("\nDo you want to add another entry? (Y / N): ");
         scanf(" %c", &userAnswer);
     } while (userAnswer == 'y' || userAnswer == 'Y'); // run the code while user enter 'y' or 'Y'
 
-    printf("You calculated calories over %d days, and the total is %.2f calories burned by walking.", days, totalCalories);
+    printf("\nOverall calories burned: %.2f calories", totalCalories);
 
     return 0;
 }
