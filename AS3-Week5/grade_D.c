@@ -10,6 +10,7 @@
 int main(){
     int steps = 0;
     float calories = 0, unitConversion = 0.05;
+    
     printf("\nPlease enter the number of steps from today: ");
     scanf("%d", &steps);
     calories = steps * unitConversion;
