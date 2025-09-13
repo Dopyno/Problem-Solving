@@ -5,8 +5,8 @@ int main(){
     int monthNumber, startingWeekDay, fixedMonth = 30;
     
      char daysOfTheWeek[7] = {'S', 'M', 'T', 'W', 'T', 'F', 'S'};
-    enum months {January, February, March, April, May, June, July, August,
-    September, October, November, December};
+    const char months[] = {"January", "February", "March", "April", "May", "June", "July", "August",
+    "September", "October", "November", "December"};
 
     printf("Please enter the month number you want to display (1 - 12): ");
     scanf("%d", &monthNumber);
@@ -14,7 +14,7 @@ int main(){
     scanf("%d", &startingWeekDay);
 
     //adjust for zero based index of the enums
-    enum months currentMonth = monthNumber - 1;
+    printf("%s", monthNumber[currentMonth]);
 
 
     return 0;
