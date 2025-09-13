@@ -5,7 +5,7 @@ int main()
     // declaring the variable
     int monthNumber, startingWeekDay, currentDay, fixedMonth = 30;
     // creating arrays for days of the weeks and months 2D array
-    char daysOfTheWeek[7][4] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fry", "Sat"};
+    char daysOfTheWeek[7][4] = {"Mon", "Tue", "Wed", "Thu", "Fry", "Sat", "Sun"};
     char months[12][12] = {"January", "February", "March", "April", "May", "June", "July", "August",
                            "September", "October", "November", "December"};
 
