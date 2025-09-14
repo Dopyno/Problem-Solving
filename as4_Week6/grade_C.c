@@ -13,15 +13,15 @@ int main()
     // ask the user to select a month and a starting day
     printf("Please enter the month number you want to display (1 - 12): ");
     scanf("%d", &monthNumber);
-    printf("Please enter the starting week day (1 = Monday, 7 = Sunday): ");
-    scanf("%d", &startingWeekDay);
-
     // add validation for user input
     if (monthNumber < 1 || monthNumber > 12)
     {
         printf("Error: Invalid month number! Please enter a number between 1 and 12.\n");
         return 1; // alert that the program terminate with an error or abnormal condition
     }
+    printf("Please enter the starting week day (1 = Monday, 7 = Sunday): ");
+    scanf("%d", &startingWeekDay);
+
     if (startingWeekDay < 1 || startingWeekDay > 7)
     {
         printf("Error: Invalid week number! Please enter a number between 1 and 7.\n");
