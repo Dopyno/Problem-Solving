@@ -2,9 +2,10 @@
 
 int main()
 {
-    int numberOfDays, userOption, total = 0;
+    int numberOfDays, userOption, total = 0, maxTemperature = 0, minTemperature = 0;
     int averageTemp = 0.0;
 
+    printf("\nWelcome to our Temperature Logger!");
     // ask the user for how many days want to create the record
     printf("\nPlease enter the number of days you want to record temperature readings: ");
     scanf("%d", &numberOfDays);
@@ -32,7 +33,7 @@ int main()
         printf("Please chose an option: \n");
         scanf("%d", &userOption);
 
-        switch (userOption) // use switch to access the menu 
+        switch (userOption) // use switch to access the menu
         {
         case 1:
             printf("\nFull list of you recordings: \n"); // print a list of all recordings
@@ -45,6 +46,30 @@ int main()
         case 2:
             averageTemp = total / numberOfDays; // calculate the average temp
             printf("\nThe average temperature of %d days is: %d°C\n", numberOfDays, averageTemp);
+            printf("\n");
+            break;
+        case 3:
+            // iterate the array to find the min and the max value
+            for (int i = 0; i < numberOfDays; i++)
+            {
+                maxTemperature = tempReadings[0]; // set the max value to be the first element of the array
+                minTemperature = tempReadings[0]; // set the min value to be the first element of the array
+                if (tempReadings[i] > maxTemperature)
+                    maxTemperature = tempReadings[i];
+                if (tempReadings[i] < minTemperature)
+                    minTemperature = tempReadings[i];
+            }
+            printf("\nThe minimum temperature is: %d°C\n", minTemperature);
+            printf("The maximum temperature is: %d°C\n", maxTemperature);
+            printf("\n");
+            break;
+        case 7:
+            printf("Thank you for using our platform today!\n");
+            printf("Good bye!\n");
+            printf("\n");
+            break;
+        default:
+            printf("Error: Invalid option, please try again!\n");
             printf("\n");
             break;
         }
