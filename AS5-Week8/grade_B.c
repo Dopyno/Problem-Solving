@@ -2,22 +2,34 @@
 
 int main()
 {
-    int numberOfDays, userOption, total = 0, maxTemperature = 0, minTemperature = 0;
-    int averageTemp = 0.0;
+    const int MAX_DAYS = 50;    // define the maximum readings in our array a constant of 50
+    const int SENTINEL = -1;    // define a sentinels to terminate our readings from the user
+    int tempReadings[MAX_DAYS]; // create an array with the max size of 50
+    int numberOfDays = 0, total = 0, maxTemperature, minTemperature, userOption;
+    int averageTemp = 0;
+    int threshold, above = 0, below = 0; // the threshold from user, above and below will be calculated
+    int weekCount = 0, weekTotal = 0, daysInWeek = 0, weeklyAverage;
 
-    printf("\nWelcome to our Temperature Logger!");
-    // ask the user for how many days want to create the record
-    printf("\nPlease enter the number of days you want to record temperature readings: ");
-    scanf("%d", &numberOfDays);
-    int tempReadings[numberOfDays]; // create an array with the size based on nr of days chosen by the user
-
-    printf("Please input the temperature readings in °C: \n");
+    printf("\nWelcome to our Temperature Logger!\n");
+    // implement a sentinels to terminate our readings from the user
+    printf("Please enter the temperature readings in °C (enter %d to stop): \n", SENTINEL);
     // create a for loop to record the readings
-    for (int i = 0; i < numberOfDays; i++)
+    for (int i = 0; i < MAX_DAYS; i++)
     {
-        printf("Please enter the value nr: %d\n", i + 1);
-        scanf("%d", &tempReadings[i]);
+        int temp; // declare a temp variable to capture the Sentinels
+        printf("Please enter the value for the Day nr: %d\n", i + 1);
+        scanf("%d", &temp);
+        if (temp == SENTINEL) // stop reading the input
+            break;
+        tempReadings[i] = temp;
         total += tempReadings[i]; // capture the total to calculate the average
+        numberOfDays++;
+    }
+
+    if (numberOfDays == 0) // no entries print a message and terminate the code with "return 0"
+    {
+        printf("\nNo readings entered. Exiting...\n");
+        return 0;
     }
     printf("All the readings stored successfully!\n\n");
 
@@ -50,10 +62,10 @@ int main()
             break;
         case 3:
             // iterate the array to find the min and the max value
+            maxTemperature = tempReadings[0]; // set the max value to be the first element of the array
+            minTemperature = tempReadings[0]; // set the min value to be the first element of the array
             for (int i = 0; i < numberOfDays; i++)
             {
-                maxTemperature = tempReadings[0]; // set the max value to be the first element of the array
-                minTemperature = tempReadings[0]; // set the min value to be the first element of the array
                 if (tempReadings[i] > maxTemperature)
                     maxTemperature = tempReadings[i];
                 if (tempReadings[i] < minTemperature)
@@ -62,6 +74,42 @@ int main()
             printf("\nThe minimum temperature is: %d°C\n", minTemperature);
             printf("The maximum temperature is: %d°C\n", maxTemperature);
             printf("\n");
+            break;
+        case 4:
+            printf("\nEnter threshold temperature in °C: ");
+            scanf("%d", &threshold);
+            for (int i = 0; i < numberOfDays; i++)
+            {
+                if (tempReadings[i] > threshold) // capture the days above
+                    above++;
+                else if (tempReadings[i] < threshold) // capture the days below
+                    below++;
+            }
+            printf("Days above %d°C: %d\n", threshold, above);
+            printf("Days below %d°C: %d\n", threshold, below);
+            printf("\n");
+            break;
+        case 5:
+            printf("\nWeekly average temperatures:\n");
+
+            for (int i = 0; i < numberOfDays; i++)
+            {
+                weekTotal += tempReadings[i]; // make the sum of the input for 1 week
+                daysInWeek++;
+
+                if (daysInWeek == 7 || i == numberOfDays - 1)
+                {
+                    weekCount++;
+                    weeklyAverage = weekTotal / daysInWeek; // calculate the average for 1 week or 7 days
+                    printf("Week %d average : %d°C\n", weekCount, weeklyAverage);
+                    weekTotal = 0; // reset the week and the days for the next week
+                    daysInWeek = 0;
+                }
+            }
+            printf("\n");
+            break;
+        case 6:
+
             break;
         case 7:
             printf("Thank you for using our platform today!\n");
