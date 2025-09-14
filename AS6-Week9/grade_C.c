@@ -10,7 +10,7 @@ int main()
     {
         printf("Current song: '%s'", playList[i]); // display the current song
         printf(" | ");
-        printf("First song: '%s'", playList[0]);   // display the first song
+        printf("First song: '%s'", playList[0]); // display the first song
         printf("\n");
     }
     return 0;
