@@ -19,7 +19,7 @@ int main()
     if (monthNumber >= 1 && monthNumber <= 12)
         printf("Calendar for: %s\n", months[monthNumber - 1]);
 
-    // print hte day of the week header and calculate the number of rows
+    // print the day of the week header and calculate the number of rows
     for (int i = 0; i < sizeof(daysOfTheWeek) / sizeof(daysOfTheWeek[0]); i++)
         printf("%4s", daysOfTheWeek[i]); // %4s format the results to use 4 spaces for width alignment
     printf("\n");
