@@ -10,13 +10,37 @@ struct Course
     char status[10];
 };
 
-// create and write a file
-int addCourse(struct Course e);
+void welcome();
+void addCourse();
 void displayCoursesInfo();
-// int getId(char line[]);
-// int searchCourse(int id);
+void printOption();
 
 int main()
+{
+    int userOption;
+
+    welcome();
+    do
+    {
+
+        printOption();
+        printf("Please select an option: ");
+        scanf("%d", &userOption);
+        switch (userOption)
+        {
+        case 1:
+            addCourse();
+            break;
+        case 2:
+            displayCoursesInfo();
+            break;
+        }
+    } while (userOption != 0);
+
+    return 0;
+}
+
+void addCourse()
 {
     struct Course student;
 
@@ -27,39 +51,26 @@ int main()
     printf("Enter your status: ");
     scanf(" %[^\n]", student.status);
 
-    addCourse(student);
-    displayCoursesInfo();
-
-    return 0;
-}
-
-int addCourse(struct Course e)
-{
-    FILE *file = fopen("registration.txt", "r");
-    if (file != NULL)
-    {
-        char line[100];
-        while (fgets(line, 100, file))
-        {
-            if (getId(line) == e.id)
-            {
-                printf("Error: the file already exist!");
-                return 1;
-            }
-        }
-    }
-    fclose(file);
-
     FILE *file1 = fopen("registration.txt", "a");
-    fprintf(file1, "%d, %s, %s\n", e.id, e.courseCode, e.status);
+    if (file1 == NULL)
+    {
+        printf("Error: File cannot be opened!\n");
+        return;
+    }
+    fprintf(file1, "%d, %s, %s\n", student.id, student.courseCode, student.status);
     fclose(file1);
+    printf("Course added successfully!\n\n");
 }
 void displayCoursesInfo()
 {
-    int choice, tempId;
     FILE *file = fopen("registration.txt", "r");
+    if (file == NULL)
+    {
+        printf("Error: No Course registration found!\n");
+        return;
+    }
     char line[100];
-    printf("=======    Student Courses ========\n");
+    printf("\n=======    Student Courses ========\n");
     while (fgets(line, 100, file))
     {
         printf("* %s", line);
@@ -67,52 +78,17 @@ void displayCoursesInfo()
     printf("===================================\n");
     fclose(file);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// printf("%d", getId(line) * 100);
-// int getId(char line[])
-// {
-//     char idStr[10];
-//     int i = 0;
-//     while (line[i] != "," && line[i] != '\0')
-//     {
-//         idStr[i] = line[i];
-//         i++;
-//     }
-//     idStr[i] = '\0';
-//     return atoi(idStr); // cast the string into an integer
-// }
-// int searchCourse(int id)
-// {
-//     FILE *file = fopen("registration.txt", "r");
-//     char line[100];
-//     while (fgets(line, 100, file))
-//     {
-//         if (getId(line) == id)
-//         {
-//             printf("* %s", line);
-//             fclose(file);
-//             return 0;
-//         }
-//     }
-//     printf("Course not found!");
-//     fclose(file);
-//     return 1;
-// }
+void welcome()
+{
+    printf("\n===  Course Registration System!  ===\n");
+    printf("\n");
+}
+void printOption()
+{
+    printf("\n1. Add a course (ID, Course Code, Status)\n");
+    printf("2. Display all courses.\n");
+    printf("3. Update existing courses.\n");
+    printf("4. Delete courses.\n");
+    printf("5. Save courses to a file and read from it for persistence.\n");
+    printf("0. Exit.\n");
+}
