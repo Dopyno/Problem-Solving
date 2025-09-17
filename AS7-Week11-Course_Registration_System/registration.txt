@@ -4,6 +4,6 @@
 4455, math, pass
 4455, English, pass
 5555, science, passs
-55, computer, pass
-44, math, pass
-44, faf, dfa
+55, Marketing, Pass
+44, Math, padd
+44, Science, pass
