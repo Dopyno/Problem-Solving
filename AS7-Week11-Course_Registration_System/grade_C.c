@@ -14,6 +14,7 @@ void welcome();
 void addCourse(int id, char courseCode[], char status[]);
 void displayCoursesInfo(struct Course student);
 void printOption();
+void searchCourses();
 
 int main()
 {
@@ -38,7 +39,10 @@ int main()
             addCourse(student.id, student.courseCode, student.status);
             break;
         case 2:
-            displayCoursesInfo();
+            displayCoursesInfo(student);
+            break;
+        case 3:
+            searchCourses();
             break;
         }
     } while (userOption != 0);
@@ -48,6 +52,23 @@ int main()
 
 void addCourse(int id, char courseCode[], char status[])
 {
+    FILE *file = fopen("registration.txt", "r");
+    if (file != NULL)
+    {
+        char line[100];
+        int fieldId;
+        while (fgets(line, 100, file))
+        {
+            sscanf(line, "%d,", &fieldId);
+            if (fieldId == id)
+            {
+                printf("Error: Course Id %d already exists! Cannot add duplicate. \n", id);
+                fclose(file);
+                return;
+            }
+        }
+        fclose(file);
+    }
     FILE *file1 = fopen("registration.txt", "a");
     if (file1 == NULL)
     {
@@ -84,10 +105,44 @@ void printOption()
 {
     printf("\n1. Add a course (ID, Course Code, Status).\n");
     printf("2. Display all courses.\n");
-    printf("3. Update existing courses.\n");
-    printf("4. Delete courses.\n");
-    printf("5. Save courses to a file and read from it for persistence.\n");
+    printf("3. Search courses.\n");
+    printf("4. Update existing courses.\n");
+    printf("5. Delete courses.\n");
+    printf("6. Save courses to a file and read from it for persistence.\n");
     printf("0. Exit\n");
+}
+void searchCourses()
+{
+    FILE *file = fopen("registration.txt", "r");
+    if (file == NULL)
+    {
+        printf("Error: No Course registration found!\n");
+        return;
+    }
+    int searchId;
+    printf("Enter the course ID to search: ");
+    scanf("%d", &searchId);
+
+    char line[100];
+    int fileId;
+    int found = 0;
+
+    printf("\n---------   Search Result   ---------\n");
+    while (fgets(line, 100, file))
+    {
+        sscanf(line, "%d", &fileId);
+        if (fileId == searchId)
+        {
+            printf("Course info:  %s", line);
+            found = 1;
+        }
+    }
+    if (!found)
+    {
+        printf("No course found for this ID: %d\n", searchId);
+    }
+    printf("-------------------------------------\n");
+    fclose(file);
 }
 
 // create and write a file

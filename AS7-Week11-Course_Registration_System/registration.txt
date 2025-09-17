@@ -1,3 +1,9 @@
 44455, Digital Media, Pass
 5544, Problem Solving, Pass
 66788, Computing, Pass
+4455, math, pass
+4455, English, pass
+5555, science, passs
+55, computer, pass
+44, math, pass
+44, faf, dfa

@@ -37,7 +37,7 @@ int main()
         }
     } while (userOption != 0);
 
-    
+
     return 0;
 }
 
@@ -81,15 +81,15 @@ void displayCoursesInfo()
 }
 void welcome()
 {
-    printf("\n===  Course Registration System!  ===\n");
+    printf("\n===  Courses Registration System!  ===\n");
     printf("\n");
 }
 void printOption()
 {
-    printf("\n1. Add a course (ID, Course Code, Status)\n");
+    printf("\n1. Add a course (ID, Course Code, Status).\n");
     printf("2. Display all courses.\n");
     printf("3. Update existing courses.\n");
     printf("4. Delete courses.\n");
     printf("5. Save courses to a file and read from it for persistence.\n");
-    printf("0. Exit.\n");
+    printf("0. Exit\n");
 }
