@@ -1,9 +1,4 @@
-44455, Digital Media, Pass
-5544, Problem Solving, Pass
-66788, Computing, Pass
-4455, math, pass
-4455, English, pass
-5555, science, passs
-55, Marketing, Pass
-44, Math, padd
-44, Science, pass
+4455, Computer Science, Pass
+5566, Science, Pass
+6677, Networking, Pass
+3333, Biology, Pass
