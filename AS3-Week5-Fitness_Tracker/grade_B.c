@@ -1,17 +1,10 @@
-// 1. Complete all previous steps.2. Add a menu system that allows the user to choose what to track :
-// • 1 : Steps
-// • 2 : Calories
-// • 3 : Distance(of walking; assume 1 step = 0.0008 km)
-//  3. Use conditional logic to perform the selected tracking operation.
-//  4. Allow the user to return to the menu or exit.
-// 5. Display a summary of all entries when the user quits, including total calories burned.#include <stdio.h>
-#include<stdio.h>
+#include <stdio.h>
 
 int main()
 {
     int steps = 0, userChoice;
     char userAnswer;
-    float calories = 0, unitConversion = 0.05, totalCalories = 0.0, caloriesBurned = 0.0, distanceInKm = 0.0; // declare the variable
+    float calories = 0, cal = 0.0, unitConversion = 0.05, totalCalories = 0.0, caloriesBurned = 0.0, distanceInKm = 0.0; // declare the variable
 
     do
     {
@@ -40,7 +33,7 @@ int main()
         case 3:
             printf("Enter the distance walked in km: ");
             scanf("%f", &distanceInKm);
-            float cal = (distanceInKm / 0.0008) * unitConversion;
+            cal = (distanceInKm / 0.0008) * unitConversion;
             totalCalories += cal;
             printf("Whilst walking %.2fkm, you have likely burned %.2f calories.\n", distanceInKm, cal);
             break;
@@ -53,7 +46,11 @@ int main()
         scanf(" %c", &userAnswer);
     } while (userAnswer == 'y' || userAnswer == 'Y'); // run the code while user enter 'y' or 'Y'
 
-    printf("\nOverall calories burned: %.2f calories", totalCalories);
+    printf("\nYou have entered in total: \n");
+    printf("%d steps (%.2f calories)\n", steps, calories);
+    printf("%.2f calories\n", caloriesBurned);
+    printf("%.2f km of distance walked (%.2f calories)\n", distanceInKm, cal);
+    printf("\nOverall calories burned: %.2f calories\n", totalCalories);
 
     return 0;
 }
