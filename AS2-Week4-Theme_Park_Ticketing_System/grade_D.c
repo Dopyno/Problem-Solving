@@ -18,7 +18,7 @@ int main()
     printf("Water: £18 for Standard, £28 for Fast Pass\n");
     printf("Family: £15 for Standard, £25 for Fast Pass\n");
 
-    // Ask the user to select the the ticket and the type
+    // Ask the user to select the  ticket and the type
     printf("\nPlease select you ticket “T” for Thrill,“W” for Water or “F” for Family: ");
     scanf(" %c", &userChoice);
     printf("\nPlease select you ticket type “S” for Standard or “F” for Fast Pass: ");
