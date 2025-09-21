@@ -5,86 +5,85 @@
 // defining the struct with 3 elements id, course code and status
 struct Course
 {
-    int id;
-    char courseCode[20];
-    char status[10];
+    int id;              // Course ID
+    char courseCode[20]; // course code
+    char status[10];     // course status
 };
-
-void welcome();
-void addCourse();
-void displayCoursesInfo();
+// prototype function declaration
+void welcome();            // Display a welcome message
+void addCourse();          // adds a new course to a file
+void displayCoursesInfo(); // display all registered courses
 void printOption();
 
 int main()
 {
-    int userOption;
+    int userOption; // store user menu selection
 
     welcome();
     do
     {
 
-        printOption();
+        printOption(); // Call print option function to display the menu
         printf("Please select an option: ");
         scanf("%d", &userOption);
         switch (userOption)
         {
         case 1:
-            addCourse();
+            addCourse(); // add new courses
             break;
         case 2:
-            displayCoursesInfo();
+            displayCoursesInfo(); // display all courses
             break;
         }
     } while (userOption != 0);
-
 
     return 0;
 }
 
 void addCourse()
 {
-    struct Course student;
-
+    struct Course student; // create a Course struct to hold the input
+                           // prompt user for course details
     printf("Enter your ID: ");
     scanf("%d", &student.id);
     printf("Enter your course code: ");
-    scanf(" %[^\n]", student.courseCode);
+    scanf(" %[^\n]", student.courseCode); // read full line including spaces until press Enter
     printf("Enter your status: ");
-    scanf(" %[^\n]", student.status);
-
+    scanf(" %[^\n]", student.status); // read full line including spaces until press Enter
+                                      // open the file in append mode to add a new entry
     FILE *file1 = fopen("registration.txt", "a");
     if (file1 == NULL)
     {
-        printf("Error: File cannot be opened!\n");
+        printf("Error: File cannot be opened!\n"); // print a message if the file not exist
         return;
-    }
+    } // write the course details to a file
     fprintf(file1, "%d, %s, %s\n", student.id, student.courseCode, student.status);
-    fclose(file1);
+    fclose(file1); // close the file
     printf("Course added successfully!\n\n");
 }
 void displayCoursesInfo()
 {
-    FILE *file = fopen("registration.txt", "r");
+    FILE *file = fopen("registration.txt", "r"); // open the file in read mode
     if (file == NULL)
     {
-        printf("Error: No Course registration found!\n");
+        printf("Error: No Course registration found!\n"); // print a message if the file not exist
         return;
     }
-    char line[100];
+    char line[100]; // buffer to hold each line from the file
     printf("\n=======    Student Courses ========\n");
-    while (fgets(line, 100, file))
+    while (fgets(line, 100, file)) // read and print each line from the file
     {
         printf("* %s", line);
     }
     printf("===================================\n");
-    fclose(file);
+    fclose(file); // Close the file
 }
 void welcome()
 {
     printf("\n===  Courses Registration System!  ===\n");
     printf("\n");
 }
-void printOption()
+void printOption() // function to print the menu option
 {
     printf("\n1. Add a course (ID, Course Code, Status).\n");
     printf("2. Display all courses.\n");

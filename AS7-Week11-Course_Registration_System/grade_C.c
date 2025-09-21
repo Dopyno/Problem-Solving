@@ -5,41 +5,40 @@
 // defining the struct with 3 elements id, course code and status
 struct Course
 {
-    int id;
-    char courseCode[20];
-    char status[10];
+    int id;              // Course ID
+    char courseCode[20]; // course code
+    char status[10];     // course status
 };
-
-void welcome();
-void addCourse(int id, char courseCode[], char status[]);
-void displayCoursesInfo(struct Course student);
-void printOption();
-void searchCourses();
+// prototype function declaration
+void welcome();                                           // Display a welcome message
+void addCourse(int id, char courseCode[], char status[]); // adds a new course to a file
+void displayCoursesInfo(struct Course student);           // display all registered courses
+void printOption();                                       // display the menu
+void searchCourses();                                     // search courses by id
 
 int main()
 {
-    struct Course student;
-    int userOption;
-
+    struct Course student; // create a Course struct to hold the input
+    int userOption;        // store user menu selection
     welcome();
     do
     {
-        printOption();
+        printOption(); // Call print option function to display the menu
         printf("Please select an option: ");
         scanf("%d", &userOption);
         switch (userOption)
         {
-        case 1:
+        case 1: // prompt user for course details
             printf("\nEnter your ID: ");
             scanf("%d", &student.id);
             printf("Enter your course code: ");
-            scanf(" %[^\n]", student.courseCode);
+            scanf(" %[^\n]", student.courseCode); // read full line including spaces until press Enter
             printf("Enter your status: ");
-            scanf(" %[^\n]", student.status);
+            scanf(" %[^\n]", student.status); // read full line including spaces until press Enter
             addCourse(student.id, student.courseCode, student.status);
             break;
         case 2:
-            displayCoursesInfo(student);
+            displayCoursesInfo(student); // display the course info
             break;
         case 3:
             searchCourses();
@@ -49,15 +48,15 @@ int main()
 
     return 0;
 }
-
+// adds new course to the registration file
 void addCourse(int id, char courseCode[], char status[])
 {
-    FILE *file = fopen("registration.txt", "r");
-    if (file != NULL)
+    FILE *file = fopen("registration.txt", "r"); // open the file in read mode to check for duplicate id
+    if (file != NULL)                            // if the file exist(not null)
     {
         char line[100];
         int fieldId;
-        while (fgets(line, 100, file))
+        while (fgets(line, 100, file)) // read each line and extract the id
         {
             sscanf(line, "%d,", &fieldId);
             if (fieldId == id)
@@ -68,7 +67,7 @@ void addCourse(int id, char courseCode[], char status[])
             }
         }
         fclose(file);
-    }
+    } // append new course to a file
     FILE *file1 = fopen("registration.txt", "a");
     if (file1 == NULL)
     {
@@ -79,7 +78,7 @@ void addCourse(int id, char courseCode[], char status[])
     fclose(file1);
     printf("Course added successfully!\n\n");
 }
-void displayCoursesInfo(struct Course student)
+void displayCoursesInfo(struct Course student) // display all courses stored in the file
 {
     FILE *file = fopen("registration.txt", "r");
     if (file == NULL)
@@ -89,7 +88,7 @@ void displayCoursesInfo(struct Course student)
     }
     char line[100];
     printf("\n=======    Student Courses ========\n");
-    while (fgets(line, 100, file))
+    while (fgets(line, 100, file)) // read and print each line
     {
         printf("* %s", line);
     }
@@ -101,7 +100,7 @@ void welcome()
     printf("\n===  Courses Registration System!  ===\n");
     printf("\n");
 }
-void printOption()
+void printOption() // display the menu for user interaction
 {
     printf("\n1. Add a course (ID, Course Code, Status).\n");
     printf("2. Display all courses.\n");
@@ -111,9 +110,9 @@ void printOption()
     printf("6. Save courses to a file and read from it for persistence.\n");
     printf("0. Exit\n");
 }
-void searchCourses()
+void searchCourses() // search a course by ID an display the result
 {
-    FILE *file = fopen("registration.txt", "r");
+    FILE *file = fopen("registration.txt", "r"); // open the file in read mode
     if (file == NULL)
     {
         printf("Error: No Course registration found!\n");
@@ -128,12 +127,12 @@ void searchCourses()
     int found = 0;
 
     printf("\n---------   Search Result   ---------\n");
-    while (fgets(line, 100, file))
+    while (fgets(line, 100, file)) // read each line and compare the id
     {
         sscanf(line, "%d", &fileId);
-        if (fileId == searchId)
+        if (fileId == searchId) // if the id is found
         {
-            printf("Course info:  %s", line);
+            printf("Course info:  %s", line); // print the course info
             found = 1;
         }
     }
@@ -142,6 +141,5 @@ void searchCourses()
         printf("No course found for this ID: %d\n", searchId);
     }
     printf("-------------------------------------\n");
-    fclose(file);
+    fclose(file); // close the file
 }
-
